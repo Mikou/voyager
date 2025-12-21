@@ -95,7 +95,7 @@ export function run(bodies:Body[]) {
 }
 
 async function loadBodies() {
-  const response = await fetch('/bodies.json');
+  const response = await fetch(`${import.meta.env.BASE_URL}/bodies.json`);
   if (!response.ok) throw new Error('Failed to load bodies');
   return response.json();
 }
