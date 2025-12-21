@@ -3,7 +3,7 @@ import { injectFactsFragment, injectBodiesScript, loadBodies } from './server';
 
 export default defineConfig(() => {
 
-   let cachedBodies: any = null;  // Cache the loaded data
+  let cachedBodies: any = null;  // Cache the loaded data
 
   const getBodies = () => {
     if (!cachedBodies) {
@@ -13,6 +13,7 @@ export default defineConfig(() => {
   };
 
   return {
+    base: '/voyager/',
     plugins: [
       {
         name: 'dynamic-html-data',
