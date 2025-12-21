@@ -1,0 +1,96 @@
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+body > header {
+  height: 100vh;
+  background-color: brown;
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+  background-image: url('/cover.jpg');
+  background-size: cover;
+}
+
+body > header > .content {
+  max-width: 750px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+body > main {
+  position: relative;
+  max-width: 750px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+body > main > #bodies {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+body > main > #bodies .body {
+  position: absolute;
+  bottom: 10%;
+  border-radius: 50%;
+  border: 1px solid black;
+  transform-origin: center center;
+  text-align: right;
+}
+
+body > main > #facts {
+  position: relative;
+}
+
+body > main > #facts .fact {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+body > main > #facts .fact .image {
+  border-radius: 50%;
+  overflow: hidden;
+  width:120px;
+  height:120px;
+}
+body > main > #facts .fact .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body > main > #facts .section,
+body > main > #facts .boost {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+
+
+#facts section > div {
+  background-color: white;
+  padding: 5px;
+  margin: 10px 0;
+  max-width: 400px;
+}
+
+body > footer {
+  height: 100vh;
+  background-color: brown;
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+  background-image: url('/cover.jpg');
+  background-size: cover;
+}
