@@ -8,7 +8,7 @@ body {
   font-family: "Lucida Console", "Courier New", monospace;
 }
 
-body > header {
+.header {
   height: 100vh;
   background-color: brown;
   padding: 2rem;
@@ -18,20 +18,20 @@ body > header {
   background-size: cover;
 }
 
-body > header > .content {
+.header > .content {
   max-width: 750px;
   margin: 0 auto;
   background-color: white;
 }
 
-body > main {
+.main {
   position: relative;
   max-width: 750px;
   margin: 0 auto;
   overflow: hidden;
 }
 
-body > main > #bodies {
+.main > #bodies {
   position: fixed;
   top: 0;
   height: 100vh;
@@ -39,7 +39,7 @@ body > main > #bodies {
   transform: translateX(-50%);
 }
 
-body > main > #bodies .body {
+.main > #bodies .body {
   position: absolute;
   bottom: 10%;
   border-radius: 50%;
@@ -48,44 +48,44 @@ body > main > #bodies .body {
   text-align: right;
 }
 
-body > main > #facts {
+.main > #facts {
   position: relative;
 }
 
-body > main > #facts .fact {
+.main > #facts .fact {
   display: flex;
   gap: 1rem;
   align-items: flex-start;
 }
-body > main > #facts .fact .image {
+
+.main > #facts .fact .image {
   border-radius: 50%;
   overflow: hidden;
   width:120px;
   height:120px;
 }
-body > main > #facts .fact .image img {
+
+.main > #facts .fact .image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-body > main > #facts .section,
-body > main > #facts .boost {
+.main > #facts .section,
+.main > #facts .boost {
   position: absolute;
   left: 0;
   right: 0;
 }
 
-
-
-#facts section > div {
+.main > #facts section > div {
   background-color: white;
   padding: 5px;
   margin: 10px 0;
   max-width: 400px;
 }
 
-body > footer {
+.footer {
   height: 100vh;
   background-color: brown;
   padding: 2rem;

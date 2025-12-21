@@ -179,7 +179,25 @@ function positionFacts(bodies:Body[]):string {
 
 export function injectFactsFragment(bodies:Body[]) {
   return html`
-    <div id="facts">${positionFacts(bodies)}</div>
+    <header class="header">
+      <div class="content">
+        <h1>Hey, hvor stor er du egenligt, lille?</h1>
+        <h2>Husk at hvis du skal doom-scrolle, så kan du lige så godt kigge på noget interessant</h2>
+      </div>
+    </header>
+
+    <main class="main">
+      <div id="bodies"></div>
+      <!-- inject:facts -->
+      <div id="facts">${positionFacts(bodies)}</div>
+    </main>
+
+    <footer class="footer">
+      <div class="content">
+        Footer content
+      </div>
+    </footer>
+
     `;
 }
 

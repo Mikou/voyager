@@ -1,7 +1,9 @@
+import fs from 'fs';
+import path from 'path';
 import { defineConfig } from 'vite';
-import { injectFactsFragment, injectBodiesScript, loadBodies } from './server';
+import { injectFactsFragment, loadBodies } from './server';
 
-export default defineConfig(() => {
+export default defineConfig(({command}) => {
 
   let cachedBodies: any = null;  // Cache the loaded data
 
@@ -13,24 +15,36 @@ export default defineConfig(() => {
   };
 
   return {
-    base: '/voyager/',
+    base: command === 'build' ? '/voyager/' : '/',
     plugins: [
       {
-        name: 'dynamic-html-data',
+        name: 'build-voyager',
         transformIndexHtml(html) {
           const bodies = getBodies();
           const injectFacts = injectFactsFragment(bodies);
-          const injectBodies = injectBodiesScript(bodies);
 
-          return html
-            .replace('<!-- inject:facts -->', injectFacts)
-            .replace('<!-- inject:bodies-script -->', injectBodies)
-          ;
+          // output the bodies into a JSON file
+          const outputPath = path.resolve(__dirname, 'public/bodies.json');
+
+          fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+          fs.writeFileSync(outputPath, JSON.stringify(bodies, null, 2));
+
+          return [
+            {
+              tag:'div',
+              injectTo:'body-prepend',
+              children: injectFacts
+            },
+            {
+              tag:'script',
+              injectTo:'body',
+              children: `const bodies = ${JSON.stringify(bodies)}`
+            }
+          ]
 
         },
         handleHotUpdate({ file, server }) {
           if (file.includes('/data/')) {
-            cachedBodies = null;
             server.ws.send({ type: 'full-reload' });
           }
         },

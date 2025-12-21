@@ -9,9 +9,9 @@ export function run(bodies:Body[]) {
   const MAX_VISIBLE_SIZE = 1500;
   const SCROLL_TAIL_FACTOR = 1; // multiple of viewport height
 
-  const $header = document.querySelector<HTMLElement>("body > header")!;
-  const $facts = document.querySelector<HTMLElement>("body > main #facts")!;
-  const $bodies = document.querySelector<HTMLDivElement>("body > main #bodies")!;
+  const $header = document.querySelector<HTMLElement>(".header")!;
+  const $facts = document.querySelector<HTMLElement>(".main #facts")!;
+  const $bodies = document.querySelector<HTMLDivElement>(".main #bodies")!;
 
   // used for caching HTML elements
   let bodyElements: { body: Body; el: HTMLElement; }[];
@@ -92,5 +92,16 @@ export function run(bodies:Body[]) {
 
   init();
 
-
 }
+
+async function loadBodies() {
+  const response = await fetch('/bodies.json');
+  if (!response.ok) throw new Error('Failed to load bodies');
+  return response.json();
+}
+
+// Example usage
+loadBodies().then((bodies) => {
+  console.log(bodies);
+  run(bodies)
+});

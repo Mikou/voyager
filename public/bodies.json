@@ -1,0 +1,56 @@
+[
+  {
+    "id": "astronaut",
+    "name": "astronaut",
+    "radius": 0.0006,
+    "text": "Our story begins with a tiny astronaut, floating in space."
+  },
+  {
+    "id": "pluto",
+    "name": "pluto",
+    "radius": 1151,
+    "text": ""
+  },
+  {
+    "id": "moon",
+    "name": "Månen",
+    "radius": 1737.5,
+    "text": "This is a descriptive text for the moon.\ncool!"
+  },
+  {
+    "id": "mercury",
+    "name": "mercury",
+    "radius": 2440,
+    "text": "This is a description text for Mercury"
+  },
+  {
+    "id": "venus",
+    "name": "venus",
+    "radius": 6052,
+    "text": "Text for venus"
+  },
+  {
+    "id": "earth",
+    "name": "earth",
+    "radius": 6371,
+    "text": "text from earth by earthian"
+  },
+  {
+    "id": "sun",
+    "name": "sun",
+    "radius": 696340,
+    "text": "Text about the sun"
+  },
+  {
+    "id": "betelgeuse",
+    "name": "betelgeuse",
+    "radius": 617100000,
+    "text": "text"
+  },
+  {
+    "id": "test",
+    "name": "test",
+    "radius": 657617100000,
+    "text": "test tests"
+  }
+]
