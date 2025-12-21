@@ -3,7 +3,7 @@ import type { Body } from './types';
 import { PIXELS_PER_DECADE } from './const';
 
 export function run(bodies:Body[]) {
-
+  console.log("app running");
   const DEFAULT_RADIUS = 150;
   const MIN_VISIBLE_SIZE = 10;
   const MAX_VISIBLE_SIZE = 1500;
