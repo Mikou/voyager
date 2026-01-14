@@ -33,7 +33,6 @@ export function loadBodies() {
       try {
         let data;
 
-        let radius = null;
         let name = null;
 
         if (!fs.existsSync(dataJsonPath)) {
@@ -47,7 +46,6 @@ export function loadBodies() {
             typeof data.height !== 'number'
           ) return null;
 
-          radius = data.radius || data.height;
           name = typeof data.name === 'string' ? 
                  data.name : id;
         }
