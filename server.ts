@@ -90,7 +90,7 @@ function renderFact(body:Body) {
   : `
     <div class="fact">
       <div class="image">
-        <img src="/bodies/${body.id}.jpg" alt="${body.name}" />
+        <img src="./bodies/${body.id}.jpg" alt="${body.name}" />
       </div>
       <div>
         <h2>${body.name}</h2>
