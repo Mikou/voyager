@@ -95,13 +95,13 @@ export function run(bodies:Body[]) {
 }
 
 async function loadBodies() {
-  const response = await fetch(`${import.meta.env.BASE_URL}/bodies.json`);
+  const url = import.meta.env.BASE_URL === "/" ? 'bodies.json' : `${import.meta.env.BASE_URL}/bodies.json`;
+  const response = await fetch(url);
   if (!response.ok) throw new Error('Failed to load bodies');
   return response.json();
 }
 
 // Example usage
 loadBodies().then((bodies) => {
-  console.log(bodies);
   run(bodies)
 });
