@@ -1,6 +1,8 @@
 export interface Body {
+  isAstronaut: boolean;
   id: string; 
   name: string;
   radius: number; 
-  text: string
+  text: string;
+  color: string;
 }

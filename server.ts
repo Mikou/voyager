@@ -8,7 +8,6 @@ import type { Body } from './src/types';
 
 const bodiesDir = path.resolve(__dirname, 'data/bodies');
 
-
 type Section = {
   type: 'section';
   top: number;
@@ -43,9 +42,12 @@ export function loadBodies() {
           data = JSON.parse(fs.readFileSync(dataJsonPath, 'utf-8'));
           
           // we need at least the radius
-          if (typeof data.radius !== 'number') return null;
+          if (
+            typeof data.radius !== 'number' &&
+            typeof data.height !== 'number'
+          ) return null;
 
-          radius = data.radius;
+          radius = data.radius || data.height;
           name = typeof data.name === 'string' ? 
                  data.name : id;
         }
@@ -57,11 +59,13 @@ export function loadBodies() {
         }
 
         return {
+          isAstronaut: Boolean(data.height),
           id,
           name,
-          radius,
-          text
-        };
+          text,
+          color: data.color || "#eeeeee",
+          radius: data.radius || data.height
+        }
       } catch(e) {
         console.warn(e);
         return null;
@@ -73,10 +77,22 @@ export function loadBodies() {
 }
 
 function renderFact(body:Body) {
-  return `
+  return body.isAstronaut ? 
+    `
+      <div class="fact astronaut">
+        <div>
+          <h2>${body.name}</h2>
+          height: <strong>${body.radius}</strong>
+          <div>
+            ${body.text}
+          </div>
+        </div>
+      </div>
+    `
+  : `
     <div class="fact">
       <div class="image">
-        <img src="/${body.id}.jpg" alt="${body.name}" />
+        <img src="/bodies/${body.id}.jpg" alt="${body.name}" />
       </div>
       <div>
         <h2>${body.name}</h2>
@@ -187,9 +203,11 @@ export function injectFactsFragment(bodies:Body[]) {
     </header>
 
     <main class="main">
-      <div id="bodies"></div>
-      <!-- inject:facts -->
-      <div id="facts">${positionFacts(bodies)}</div>
+      <div class="content">
+        <div id="bodies"></div>
+        <!-- inject:facts -->
+        <div id="facts">${positionFacts(bodies)}</div>
+      </div>
     </main>
 
     <footer class="footer">

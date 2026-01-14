@@ -1,56 +1,114 @@
 [
   {
+    "isAstronaut": true,
     "id": "astronaut",
     "name": "astronaut",
-    "radius": 0.0006,
-    "text": "Our story begins with a tiny astronaut, floating in space."
+    "text": "Our story begins with a tiny astronaut, floating in space.",
+    "color": "#eeeeee",
+    "radius": 0.0006
   },
   {
+    "isAstronaut": false,
     "id": "pluto",
     "name": "pluto",
-    "radius": 1151,
-    "text": ""
+    "text": "",
+    "color": "#B6A39A",
+    "radius": 1151
   },
   {
+    "isAstronaut": false,
     "id": "moon",
     "name": "Månen",
-    "radius": 1737.5,
-    "text": "This is a descriptive text for the moon.\ncool!"
+    "text": "This is a descriptive text for the moon.\ncool!",
+    "color": "#eeeeee",
+    "radius": 1737.5
   },
   {
+    "isAstronaut": false,
     "id": "mercury",
     "name": "mercury",
-    "radius": 2440,
-    "text": "This is a description text for Mercury"
+    "text": "This is a description text for Mercury",
+    "color": "#8A8A8A",
+    "radius": 2440
   },
   {
+    "isAstronaut": false,
+    "id": "mars",
+    "name": "mars",
+    "text": "",
+    "color": "#B5533C",
+    "radius": 3389.5
+  },
+  {
+    "isAstronaut": false,
     "id": "venus",
     "name": "venus",
-    "radius": 6052,
-    "text": "Text for venus"
+    "text": "Text for venus",
+    "color": "#E6C37A",
+    "radius": 6052
   },
   {
+    "isAstronaut": false,
     "id": "earth",
     "name": "earth",
-    "radius": 6371,
-    "text": "text from earth by earthian"
+    "text": "text from earth by earthian",
+    "color": "#2F6D9A",
+    "radius": 6371
   },
   {
+    "isAstronaut": false,
+    "id": "neptune",
+    "name": "neptune",
+    "text": "",
+    "color": "#3A5FCD",
+    "radius": 24622
+  },
+  {
+    "isAstronaut": false,
+    "id": "uranus",
+    "name": "uranus",
+    "text": "",
+    "color": "#6FB1B8",
+    "radius": 25362
+  },
+  {
+    "isAstronaut": false,
+    "id": "saturn",
+    "name": "saturn",
+    "text": "",
+    "color": "#E8D9A8",
+    "radius": 58232
+  },
+  {
+    "isAstronaut": false,
+    "id": "jupiter",
+    "name": "jupiter",
+    "text": "",
+    "color": "#D8A56D",
+    "radius": 69911
+  },
+  {
+    "isAstronaut": false,
     "id": "sun",
     "name": "sun",
-    "radius": 696340,
-    "text": "Text about the sun"
+    "text": "Text about the sun",
+    "color": "#FDB813",
+    "radius": 696340
   },
   {
+    "isAstronaut": false,
     "id": "betelgeuse",
     "name": "betelgeuse",
-    "radius": 617100000,
-    "text": "text"
+    "text": "text",
+    "color": "#eeeeee",
+    "radius": 617100000
   },
   {
+    "isAstronaut": false,
     "id": "test",
     "name": "test",
-    "radius": 657617100000,
-    "text": "test tests"
+    "text": "test tests",
+    "color": "#eeeeee",
+    "radius": 657617100000
   }
 ]

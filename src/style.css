@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --gradient-start: #2f6d9a;
+  --gradient-end: #0b1020;
+}
+
 body {
   font-family: "Lucida Console", "Courier New", monospace;
 }
@@ -25,61 +30,84 @@ body {
 }
 
 .main {
+
+  --gradient-mid: 50%;
+
+  background: linear-gradient(
+    to bottom,
+    var(--gradient-start) 0%,
+    var(--gradient-end) var(--gradient-mid),
+    var(--gradient-end) 100%
+  );
+
+}
+
+.main > .content {
   position: relative;
   max-width: 750px;
   margin: 0 auto;
   overflow: hidden;
 }
 
-.main > #bodies {
+#bodies {
   position: fixed;
   top: 0;
   height: 100vh;
   left: 50%;
   transform: translateX(-50%);
+  color:#ffffff;
 }
 
-.main > #bodies .body {
+#bodies .astronaut {
+  position: absolute;
+  bottom: 10%;
+  transform-origin: center center;
+
+}
+
+#bodies .body {
   position: absolute;
   bottom: 10%;
   border-radius: 50%;
-  border: 1px solid black;
+  border: 1px solid  var(--body-color, #eeeeee);
   transform-origin: center center;
   text-align: right;
 }
 
-.main > #facts {
+#facts {
   position: relative;
 }
 
-.main > #facts .fact {
+#facts .fact {
   display: flex;
   gap: 1rem;
   align-items: flex-start;
 }
 
-.main > #facts .fact .image {
+#facts .fact .image {
+  flex:0 0 auto;
   border-radius: 50%;
   overflow: hidden;
   width:120px;
   height:120px;
 }
 
-.main > #facts .fact .image img {
+#facts .fact .image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.main > #facts .section,
-.main > #facts .boost {
+#facts .section,
+#facts .boost {
   position: absolute;
   left: 0;
   right: 0;
 }
 
-.main > #facts section > div {
-  background-color: white;
+#facts section > div {
+  background-color: rgba(255, 255, 255, .75);
+  border-radius: 5px;
   padding: 5px;
   margin: 10px 0;
   max-width: 400px;

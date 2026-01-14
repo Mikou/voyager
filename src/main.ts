@@ -10,6 +10,7 @@ export function run(bodies:Body[]) {
   const SCROLL_TAIL_FACTOR = 1; // multiple of viewport height
 
   const $header = document.querySelector<HTMLElement>(".header")!;
+  const $main = document.querySelector(".main") as HTMLElement;
   const $facts = document.querySelector<HTMLElement>(".main #facts")!;
   const $bodies = document.querySelector<HTMLDivElement>(".main #bodies")!;
 
@@ -33,16 +34,15 @@ export function run(bodies:Body[]) {
 
   $facts.style.height = `${animatedScrollHeight + tailHeight}px`;
 
+  updateGradient(45);
+
+  function updateGradient(midPercent: number) {
+    // Clamp defensively
+    const clamped = Math.max(0, Math.min(100, midPercent));
+    $main.style.setProperty('--gradient-mid', `${clamped}%`);
+  }
+
   function updateScene(percent: number) {
-
-    // use cached HTML elements first
-    if(!bodyElements) {
-      bodyElements = bodies.map(body => ({
-        body,
-        el: document.querySelector<HTMLElement>(`.body.${body.id}`)!
-      }));
-    }
-
     const t = percent / 100;
     const zoomExp = lerp(zoomMin, zoomMax, t);
     const zoomFactor = Math.pow(10, zoomExp) * 1e-6;
@@ -67,9 +67,32 @@ export function run(bodies:Body[]) {
   }
 
   function createObjectElements() {
-    $bodies.innerHTML = bodies
-      .map(body => `<div class="body ${body.id}">${body.id}</div>`)
-      .join('\n');
+    bodyElements = bodies.map(body => {
+      let el: HTMLElement;
+
+      if (body.isAstronaut) {
+        el = document.createElement('div');
+        el.className = `astronaut ${body.id}`;
+
+        const img = document.createElement('img');
+        img.src = `bodies/${body.id}.jpg`;
+        img.alt = body.name;
+        img.style.height = '100%';
+
+        el.appendChild(img);
+      } else {
+        el = document.createElement('div');
+        el.className = `body ${body.id}`;
+        el.textContent = body.id;
+
+        el.style.setProperty('--body-color', body.color);
+
+      }
+
+      $bodies.appendChild(el);
+
+      return { body, el };
+    });
   }
 
   function init() {

@@ -3,16 +3,35 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import { injectFactsFragment, loadBodies } from './server';
 
-export default defineConfig(({command}) => {
 
-  let cachedBodies: any = null;  // Cache the loaded data
+function copyBodyImages(bodies: any[]) {
+  const srcRoot = path.resolve(__dirname, 'data/bodies');
+  const destRoot = path.resolve(__dirname, 'public/bodies');
 
-  const getBodies = () => {
-    if (!cachedBodies) {
-      cachedBodies = loadBodies();
+  fs.mkdirSync(destRoot, { recursive: true });
+
+  for (const body of bodies) {
+    const bodyName = body.id; // adjust if your field is different
+
+    const srcImage = path.join(srcRoot, bodyName, 'image.jpg');
+    const destImage = path.join(destRoot, `${bodyName}.jpg`);
+
+    if (!fs.existsSync(srcImage)) continue;
+
+    const srcStat = fs.statSync(srcImage);
+    const destStat = fs.existsSync(destImage)
+      ? fs.statSync(destImage)
+      : null;
+
+    // Copy only if missing or outdated
+    if (!destStat || srcStat.mtimeMs > destStat.mtimeMs) {
+      fs.copyFileSync(srcImage, destImage);
     }
-    return cachedBodies;
-  };
+
+  }
+}
+
+export default defineConfig(({command}) => {
 
   return {
     base: command === 'build' ? '/voyager/' : '/',
@@ -20,7 +39,7 @@ export default defineConfig(({command}) => {
       {
         name: 'build-voyager',
         transformIndexHtml(html) {
-          const bodies = getBodies();
+          const bodies = loadBodies();
           const injectFacts = injectFactsFragment(bodies);
 
           // output the bodies into a JSON file
@@ -28,6 +47,10 @@ export default defineConfig(({command}) => {
 
           fs.mkdirSync(path.dirname(outputPath), { recursive: true });
           fs.writeFileSync(outputPath, JSON.stringify(bodies, null, 2));
+
+          // Copy images
+          copyBodyImages(bodies);
+
 
           return [
             {
