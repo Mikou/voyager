@@ -11,12 +11,28 @@ function copyBodyImages(bodies: any[]) {
   fs.mkdirSync(destRoot, { recursive: true });
 
   for (const body of bodies) {
-    const bodyName = body.id; // adjust if your field is different
+    const bodyName = body.id;
 
-    const srcImage = path.join(srcRoot, bodyName, 'image.jpg');
-    const destImage = path.join(destRoot, `${bodyName}.jpg`);
+    const srcDir = path.join(srcRoot, bodyName);
 
-    if (!fs.existsSync(srcImage)) continue;
+    const pngSrc = path.join(srcDir, 'image.png');
+    const jpgSrc = path.join(srcDir, 'image.jpg');
+
+    let srcImage: string | null = null;
+    let ext: 'png' | 'jpg' | null = null;
+
+    // PNG takes precedence
+    if (fs.existsSync(pngSrc)) {
+      srcImage = pngSrc;
+      ext = 'png';
+    } else if (fs.existsSync(jpgSrc)) {
+      srcImage = jpgSrc;
+      ext = 'jpg';
+    }
+
+    if (!srcImage || !ext) continue;
+
+    const destImage = path.join(destRoot, `${bodyName}.${ext}`);
 
     const srcStat = fs.statSync(srcImage);
     const destStat = fs.existsSync(destImage)
@@ -27,7 +43,6 @@ function copyBodyImages(bodies: any[]) {
     if (!destStat || srcStat.mtimeMs > destStat.mtimeMs) {
       fs.copyFileSync(srcImage, destImage);
     }
-
   }
 }
 

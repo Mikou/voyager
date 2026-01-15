@@ -116,7 +116,8 @@ function renderSection(section: Section | Boost) {
   } else {
     return html`
       <div style="top:${section.top.toFixed(2)}px;" class="${section.type}">
-        Keep scrolling...
+        <h2>🛰️</h2>
+        <div>keep scrolling</div>
       </div>`;
   }
 }
@@ -161,7 +162,7 @@ function groupSections(bodies:Body[]): Section[] {
 
 function insertBoost(sections: Section[]): (Section | Boost)[] {
   const result: (Section | Boost)[] = [];
-  const STEP = PIXELS_PER_DECADE;
+  const STEP = 3000;
 
   for (let i = 0; i < sections.length; i++) {
     const section = sections[i];

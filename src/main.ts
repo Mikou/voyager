@@ -75,7 +75,7 @@ export function run(bodies:Body[]) {
         el.className = `astronaut ${body.id}`;
 
         const img = document.createElement('img');
-        img.src = `bodies/${body.id}.jpg`;
+        img.src = `bodies/${body.id}.png`;
         img.alt = body.name;
         img.style.height = '100%';
 

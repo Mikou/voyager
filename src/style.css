@@ -21,6 +21,7 @@ body {
   z-index: 2;
   background-image: url('/cover.jpg');
   background-size: cover;
+  z-index:30;
 }
 
 .header > .content {
@@ -56,12 +57,19 @@ body {
   left: 50%;
   transform: translateX(-50%);
   color:#ffffff;
+  z-index:20;
+  pointer-events: none;
+  @media screen and (min-width: 768px) {
+    z-index:10;
+  }
 }
 
 #bodies .astronaut {
   position: absolute;
   bottom: 10%;
   transform-origin: center center;
+  text-align: center;
+  transform: rotate(-25deg);
 }
 
 #bodies .body {
@@ -75,6 +83,10 @@ body {
 
 #facts {
   position: relative;
+  z-index:10;
+  @media screen and (min-width: 768px) {
+    z-index:20;
+  }
 }
 
 #facts .fact {
@@ -104,12 +116,30 @@ body {
   right: 0;
 }
 
+#facts .boost {
+  color: #fff;
+  text-align: center;
+}
+
+#facts .boost > h2 {
+  font-size: 5rem;
+}
+#facts .boost > div {
+  font-size: .85rem;
+  padding:5px;
+}
+
 #facts section > div {
   background-color: rgba(255, 255, 255, .75);
   border-radius: 5px;
   padding: 5px;
   margin: 10px 0;
-  max-width: 400px;
+  max-width: 100%;
+  margin:5px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 400px;
+  }
 }
 
 .footer {
@@ -120,4 +150,5 @@ body {
   z-index: 2;
   background-image: url('/cover.jpg');
   background-size: cover;
+  z-index: 30;
 }
